@@ -1,16 +1,18 @@
 const { Router } = require("express");
-const{getLivros} = require("../controladores/livro.js")
+const{getLivros, getLivro, postLivro} = require("../controladores/livro.js")
 const router = Router();
 
 router.get("/", getLivros);
+router.get("/:id", getLivro);
 
 
-router.post("/", (req, res) => {
-  res.send("Você fez um requisição do tipo POST");
-}); //CADASTRAR DADOS
+router.post("/",postLivro)//CADASTRAR DADOS
+
+
 router.patch("/", (req, res) => {
   res.send("Você fez um requisição do tipo PATCH!"); //EDITAR DADOS
 });
+
 
 router.delete("/", (req, res) => {
   res.send("Você fez um requisição do tipo DELETE");
