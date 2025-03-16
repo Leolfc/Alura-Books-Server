@@ -22,7 +22,7 @@ function modificaLivro(modificacoes, id) {
   fs.writeFileSync('livros.json', JSON.stringify( livrosAtuais))
 }
 function deletaLivroPorId(id){
-  let livroDeletado = JSON.parse(fs.readFileSync("livros.json"));
+  const livroDeletado = JSON.parse(fs.readFileSync("livros.json"));
   const livrosFiltrados = livroDeletado.filter((livro=>livro.id !== id))
   fs.writeFileSync('livros.json', JSON.stringify(livrosFiltrados))
 }
