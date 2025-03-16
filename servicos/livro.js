@@ -14,8 +14,23 @@ function insereLivro(livroNovo) {
   fs.writeFileSync("livros.json", JSON.stringify(novaListaDeLivros));
 }
 
+function modificaLivro(modificacoes, id) {
+  let livrosAtuais = JSON.parse(fs.readFileSync("livros.json"));
+  const indiceModificado = livrosAtuais.findIndex((livro) => livro.id === id);
+  const conteudoMudado = { ...livrosAtuais[indiceModificado], ...modificacoes };
+  livrosAtuais[indiceModificado] = conteudoMudado
+  fs.writeFileSync('livros.json', JSON.stringify( livrosAtuais))
+}
+function deletaLivroPorId(id){
+  let livroDeletado = JSON.parse(fs.readFileSync("livros.json"));
+  const livrosFiltrados = livroDeletado.filter((livro=>livro.id !== id))
+  fs.writeFileSync('livros.json', JSON.stringify(livrosFiltrados))
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorId,
   insereLivro,
+  modificaLivro,
+  deletaLivroPorId,
 };
